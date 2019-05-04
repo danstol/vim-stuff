@@ -14,12 +14,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 " DS: vundle parent, need to have it in $rtp
 Plugin 'VundleVim/Vundle.vim'
-
 " DS: enables git for vim
 Plugin 'tpope/vim-fugitive'
 " airline plugin
 " DS: statusline and themes
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " nerdtree plugin
 " DS: file browser, open with F2
 Plugin 'scrooloose/nerdtree'
@@ -28,6 +28,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'wincent/terminus'
 " DS: vim-vue integration
 Plugin 'posva/vim-vue'
+" DS: promptline
+Bundle 'edkolev/promptline.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -181,8 +183,48 @@ set directory=~/vimtmp,.
 " Put your non-Plugin stuff after this line
 
 " enabled tabbing when there is only one window open
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
+
+let g:airline_theme='luna'
+
+let g:promptline_preset = {
+        \'a' : [ promptline#slices#host() ],
+        \'b' : [ promptline#slices#user() ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'y' : [ promptline#slices#vcs_branch() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
+
 " activate NerdTree with F2
 map <F2> :NERDTreeToggle<CR>
 
