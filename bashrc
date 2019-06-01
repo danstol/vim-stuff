@@ -8,17 +8,6 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -119,11 +108,6 @@ fi
 
 alias gs='git status'
 
-export ep_home='/home/dstola/workspace/event_planner_template/event_planner'
-
-export EP_EMAIL_HOST='support@stolaconsulting.com'
-export EP_EMAIL_PASSWORD='kXCx3K1tBJg2'
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/dstola/.sdkman"
 [[ -s "/home/dstola/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dstola/.sdkman/bin/sdkman-init.sh"
@@ -132,16 +116,16 @@ export SDKMAN_DIR="/home/dstola/.sdkman"
 # append rather than overwrite history file
 shopt -s histappend
 # history file size limits
-export AHISTFILESIZE=1000000
-export HISTSIZE=1000000
+AHISTFILESIZE=1000000
+HISTSIZE=1000000
 # ignore duplicates and spaces
-export HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth
 # time format
-export HISTTIMEFORMAT='%F %T '
+HISTTIMEFORMAT='%F %T '
 # ignored commands
-export HISTIGNORE='ls:history'
+HISTIGNORE='ls:history'
 # record history commands right away
-export PROMPT_COMMAND='history -a'
+PROMPT_COMMAND='history -a'
 # one history entry perline
 shopt -s cmdhist
 
