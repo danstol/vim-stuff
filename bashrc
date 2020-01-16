@@ -2,11 +2,24 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+source ~/.promptline.sh
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -45,6 +58,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+source ~/git_prompt.sh
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
@@ -80,7 +95,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias python='python3'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -106,28 +120,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias gs='git status'
+alias rdb='rm /tmp/.db_lock'
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/dstola/.sdkman"
-[[ -s "/home/dstola/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dstola/.sdkman/bin/sdkman-init.sh"
-
-# BETTER HISTORY
-# append rather than overwrite history file
-shopt -s histappend
-# history file size limits
-AHISTFILESIZE=1000000
-HISTSIZE=1000000
-# ignore duplicates and spaces
-HISTCONTROL=ignoreboth
-# time format
-HISTTIMEFORMAT='%F %T '
-# ignored commands
-HISTIGNORE='ls:history'
-# record history commands right away
-PROMPT_COMMAND='history -a'
-# one history entry perline
-shopt -s cmdhist
-
-source ~/.promptline.sh
-
+alias sudo='sudo -E'
+export PATH=$PATH:/usr/local/go/bin
+export PYTHONIOENCODING=UTF-16
