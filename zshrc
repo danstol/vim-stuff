@@ -79,6 +79,8 @@ plugins=(
     python
     sudo
     zsh_reload
+    golang
+    rust
 )
 
 source $ZSH/oh-my-zsh.sh

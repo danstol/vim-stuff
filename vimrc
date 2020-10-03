@@ -30,6 +30,10 @@ Plugin 'wincent/terminus'
 Plugin 'posva/vim-vue'
 " DS: promptline
 Bundle 'edkolev/promptline.vim'
+" DS: vim-go for GOLANG
+Plugin 'fatih/vim-go'
+" DS: rust.vim for RUST
+Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
